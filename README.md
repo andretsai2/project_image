@@ -17,7 +17,8 @@ This system uses the Kria KV260 FPGA to process audio captured via a connected I
 
 A rough structure of our current system is shown as an architecture diagram in *Figure 1*:
 
-<img src="https://drive.google.com/file/d/1OX_fcbvY4mwOvrJPNE9KVrnuLKltpCy0/view?usp=sharing" alt="system_diagram.png" />
+<img align="left" width="400" height="350" 
+src="https://drive.google.com/uc?export=view&id=1OX_fcbvY4mwOvrJPNE9KVrnuLKltpCy0">
 
 *Figure 1: Architecture diagram of our current system*
 
