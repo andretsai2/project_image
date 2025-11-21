@@ -32,13 +32,42 @@ Our original system’s PS design is currently not fully implemented.
 
 Our planned intended design and its represented architecture diagram will be further elaborated below in section 6.
 
-## 3. Board + program setup guide
+As per software code run on baremetal, the following main functions are used:
+- main() - a FSM for the board to turn on and off audio recording
+- audio_capture()
+Captures audio buffers until recording is turned off by main() fsm
+Creates .wav file the recorded audio buffers. Also converts 32KHz to 16KHz sampling for ML usage. 
+Logs recording data onto a text file
 
-text
+For the ML model, we originally used a pretrained model which is YamNet MobileNetV1 which we extract the embeddings of and run our own custom CV deep training script. We scoured the internet for datasets which for now we narrow down to birds due to their characteristic voices. Our current model now runs a tflite version of the original model which has been deep trained on Ubuntu on a separate board. 
+
+## 3. Board + program setup guide
+Board setup: (same as Lab 1-3)
+1. Plug in “design proj A/B PMod board” into Kria KV260 “J2”.
+2. Plug in a I2S MEMS mic into “Mic R”.
+3. Connect and power up the board:
+    a. Connect the USB cable to the FPGA “J4” and to the user’s computer.
+    b. Connect the power cable to the FPGA “J12” and to the power.
+4. Open PuTTY → connect right serial port → Baud rate 115200, no flow control.
+5. Put the board into standalone mode via Xilinx xsct.
+
+![boot_up_manual](https://drive.google.com/uc?export=view&id=1mYCoy5DOF5Jgjq7-_ZBThaMHGih8e-6g)
+6. Plug in an SD card into the board’s J11 SD card slot.
+
+Create vitis application:
+1. Create a new platform using settings from Labs 1-3, use the .xsa file “sd_card_attempt_6_1000_mono.xsa” as provided in the files submission. Do not build the platform yet.
+2. Enable Xilinx FAT file system reading for SD card access
+    a. Open up platform.spr.
+    b. On the platform.spr tab, click on “psu_cortexa53_0” →  “standalone on psu_cortexa53_0” → “Board Support Package”. Click on “Modify BSP Settings”.
+![vitis_creation](https://drive.google.com/uc?export=view&id=1mYCoy5DOF5Jgjq7-_ZBThaMHGih8e-6g)
+    c. Tick the box next to “xilffs” and press “Ok”.
+![vitis_creation_2](https://drive.google.com/uc?export=view&id=1mYCoy5DOF5Jgjq7-_ZBThaMHGih8e-6g)
+
+
+
 
 ## 4. Usage guide + expected behaviour of implementation
 
-text
 
 ## 5. Custom configuration guide
 
