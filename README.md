@@ -46,8 +46,8 @@ Board setup: (same as Lab 1-3)
 1. Plug in “design proj A/B PMod board” into Kria KV260 “J2”.
 2. Plug in a I2S MEMS mic into “Mic R”.
 3. Connect and power up the board:
-    a. Connect the USB cable to the FPGA “J4” and to the user’s computer.
-    b. Connect the power cable to the FPGA “J12” and to the power.
+    - (a) Connect the USB cable to the FPGA “J4” and to the user’s computer.
+    - (b) Connect the power cable to the FPGA “J12” and to the power.
 4. Open PuTTY → connect right serial port → Baud rate 115200, no flow control.
 5. Put the board into standalone mode via Xilinx xsct.
 
@@ -57,16 +57,33 @@ Board setup: (same as Lab 1-3)
 Create vitis application:
 1. Create a new platform using settings from Labs 1-3, use the .xsa file “sd_card_attempt_6_1000_mono.xsa” as provided in the files submission. Do not build the platform yet.
 2. Enable Xilinx FAT file system reading for SD card access
-    a. Open up platform.spr.
-    b. On the platform.spr tab, click on “psu_cortexa53_0” →  “standalone on psu_cortexa53_0” → “Board Support Package”. Click on “Modify BSP Settings”.
-![vitis_creation](https://drive.google.com/uc?export=view&id=1mYCoy5DOF5Jgjq7-_ZBThaMHGih8e-6g)
-    c. Tick the box next to “xilffs” and press “Ok”.
-![vitis_creation_2](https://drive.google.com/uc?export=view&id=1mYCoy5DOF5Jgjq7-_ZBThaMHGih8e-6g)
+    - (a). Open up platform.spr.
+    - (b). On the platform.spr tab, click on “psu_cortexa53_0” →  “standalone on psu_cortexa53_0” → “Board Support Package”. Click on “Modify BSP Settings”.
 
+    - ![vitis_creation](https://drive.google.com/uc?export=view&id=1IrfJ-m8GJQabhAtSKXTnXAgwS-0BGLIl)
 
+    - (c). Tick the box next to “xilffs” and press “Ok”.
+    - ![vitis_creation_2](https://drive.google.com/uc?export=view&id=d/1_5tUN61Cmq3jhuULaz9SwhiuVdJsSvbE)
+    - (d). Clean the platform and then rebuild the platform.
+3.  (same as Lab 1-3) Create a new application project and select the newly created platform as the base. Make it a standalone project based on the “Hello World” template. Delete all the code inside “helloworld.c” and replace it with the code inside “sixteenK_7_app.c” as provided in the files submission. (copy all and paste into helloworld.c)
+4. Build the application and use the green “Play” button to deploy it to the board.
 
+Machine learning model setup - phase 1:
+- Create a virtual environment(can be from conda, or others) with python (using pip install would make it much simpler)
+- Install tensorflow 2.20, sklearn, and other dependencies inside the virtual_environment (do conda activate [virtual_environment_folder_name] first before running pip install).
+These should all suffice but do install other dependencies if needed.
 
 ## 4. Usage guide + expected behaviour of implementation
+How to use the board: (this needs to update ML changes)
+- The program is able to record audio of any length and put it in a .wav file.
+    - To start a recording, press (and release) button “SW1” once; to end a currently running recording, press button once again
+    - Each recording ends after a certain amount of time, returning back to recording off mode; this time limit can be shortened/extended via the guide on section 5.
+    - LED “D1” lights up to indicate that a recording is running.
+    - The board can keep making .wav recordings as long as the SD card has enough space and the number of .wav files don’t exceed 99999.
+- Upon the creation of each .wav file, each .wav file info is printed in a log file
+    - The logfile “logfile.txt” is located inside the SD card and is dynamically updated per each .wav file generated.
+    - Inside you can find “audio recording start time”, “audio recording end time”, and “audio recording length”.
+
 
 
 ## 5. Custom configuration guide
