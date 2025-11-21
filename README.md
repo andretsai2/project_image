@@ -51,7 +51,7 @@ Board setup: (same as Lab 1-3)
 4. Open PuTTY → connect right serial port → Baud rate 115200, no flow control.
 5. Put the board into standalone mode via Xilinx xsct.
 
-![boot_up_manual](https://drive.google.com/uc?export=view&id=1mYCoy5DOF5Jgjq7-_ZBThaMHGih8e-6g)
+![boot_up_manual](https://drive.google.com/uc?export=view&id=18LpOxYyWkc8C63f2NdrtS6UB8_CJcBfC)
 6. Plug in an SD card into the board’s J11 SD card slot.
 
 Create vitis application:
