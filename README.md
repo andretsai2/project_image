@@ -20,6 +20,8 @@ A rough structure of our current system is shown as an architecture diagram in *
 <img align="left" width="400" height="350" 
 src="https://drive.google.com/uc?export=view&id=1OX_fcbvY4mwOvrJPNE9KVrnuLKltpCy0">
 
+<BR CLEAR = "?">
+
 *Figure 1: Architecture diagram of our current system*
 
 The hardware code is an extension of lab 3’s existing code with minimal tweeks:
